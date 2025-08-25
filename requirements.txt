@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+apscheduler
+python-dotenv
+pydantic
+langchain-google-genai
+langchain-community
