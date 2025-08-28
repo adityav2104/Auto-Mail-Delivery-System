@@ -10,7 +10,7 @@ scheduler.start()
 def log_action(mail_id, agent, message):
     """Logs actions for any agent."""
     if mail_id is None:
-        return  
+        return
     db = SessionLocal()
     new_log = Log(mail_id=mail_id, agent=agent, message=message)
     db.add(new_log)
@@ -42,7 +42,7 @@ def schedule_mail(mail_id, to, subject, body, run_time):
     """Schedules mail to be sent at run_time."""
     scheduler.add_job(
         job_send_email,
-        'date',
+        "date",
         run_date=run_time,
         args=[mail_id, to, subject, body]
     )

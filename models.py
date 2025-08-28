@@ -11,7 +11,7 @@ class MailTask(Base):
     body = Column(Text, nullable=False)
     schedule_time = Column(DateTime, nullable=False)
     status = Column(String, default="pending")
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.now)
 
 class Log(Base):
     __tablename__ = "logs"
@@ -20,4 +20,4 @@ class Log(Base):
     mail_id = Column(Integer, nullable=False)
     agent = Column(String, nullable=False)
     message = Column(Text, nullable=False)
-    timestamp = Column(DateTime, default=datetime.utcnow)
+    timestamp = Column(DateTime, default=datetime.now)

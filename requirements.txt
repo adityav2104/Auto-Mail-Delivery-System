@@ -7,3 +7,5 @@ python-dotenv
 pydantic
 langchain-google-genai
 langchain-community
+autogen
+dateparser

@@ -1,18 +1,13 @@
 from datetime import datetime, timedelta
-import os, json, re, dateparser
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.agents import initialize_agent, Tool, AgentType
+import json, re, dateparser
+from langchain.agents import initialize_agent, AgentType
+from langchain.tools import tool
+from llms import gemini_llm
 
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-
-gemini_llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
-    google_api_key=GOOGLE_API_KEY,
-    temperature=0.2
-)
-
+@tool
 def parse_datetime_tool(text: str) -> str:
+    """Convert natural language datetime into ISO format string"""
     dt = dateparser.parse(text)
     if not dt:
         raise ValueError(f"Could not parse datetime from: {text}")
@@ -21,16 +16,9 @@ def parse_datetime_tool(text: str) -> str:
 
 class ParserAgent:
     def __init__(self):
-        tools = [
-            Tool(
-                name="DatetimeParser",
-                func=parse_datetime_tool,
-                description="Convert natural language datetime into ISO format string"
-            )
-        ]
         self.agent = initialize_agent(
-            tools,
-            gemini_llm,
+            tools = [parse_datetime_tool],
+            llm = gemini_llm,
             agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
             verbose=True,
         )

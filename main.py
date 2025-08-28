@@ -2,8 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from database import Base, engine
-#from agents import ValidatorAgent, SchedulerAgent, MailerAgent, ReporterAgent
-from agents2 import ParserAgent, ValidatorAgent, SchedulerAgent, MailerAgent, ReporterAgent
+from agents import ParserAgent, ValidatorAgent, SchedulerAgent, MailerAgent, ReporterAgent
 import time
 
 Base.metadata.create_all(bind=engine)

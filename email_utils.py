@@ -1,8 +1,5 @@
 import smtplib, os
 from email.mime.text import MIMEText
-from dotenv import load_dotenv
-
-load_dotenv()
 
 EMAIL = os.getenv("EMAIL")
 APP_PASSWORD = os.getenv("APP_PASSWORD")
